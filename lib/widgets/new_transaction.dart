@@ -53,55 +53,63 @@ class _NewTransactionState extends State<NewTransaction> {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              decoration: const InputDecoration(labelText: 'Title'),
-              controller: _titleController,
-              onSubmitted: (_) => _submitData(),
-            ),
-            TextField(
-              decoration: const InputDecoration(labelText: 'Amount'),
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => _submitData(),
-              // onChanged: (value) {
-              //   amountInput = value;
-              // },
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    _selectedDate.isEmpty
-                        ? 'No date chosen.'
-                        : 'Picked Date: $_selectedDate',
-                  ),
-                ),
-                TextButton(
-                  onPressed: _presentDatePicker,
-                  child: const Text(
-                    'Chose Date',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+        padding: EdgeInsets.only(
+          left: 10,
+          right: 10,
+          top: 10,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              TextField(
+                decoration: const InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                onSubmitted: (_) => _submitData(),
+              ),
+              TextField(
+                decoration: const InputDecoration(labelText: 'Amount'),
+                controller: _amountController,
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => _submitData(),
+                // onChanged: (value) {
+                //   amountInput = value;
+                // },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      _selectedDate.isEmpty
+                          ? 'No date chosen.'
+                          : 'Picked Date: $_selectedDate',
                     ),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  onPressed: _submitData,
-                  child: const Text(
-                    'Add Transaction',
+                  TextButton(
+                    onPressed: _presentDatePicker,
+                    child: const Text(
+                      'Chose Date',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: _submitData,
+                    child: const Text(
+                      'Add Transaction',
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
